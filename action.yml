@@ -1,0 +1,9 @@
+name: 'Changelog Linter'
+description: 'A linter for your changelog. Based on https://github.com/MalteHerrmann/changelog-utils'
+author: 'Malte Herrmann'
+outputs:
+  linter-results:
+    description: 'Changelog linter output'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

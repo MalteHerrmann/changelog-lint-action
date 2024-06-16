@@ -1,0 +1,18 @@
+name: Changelog Linter
+
+on:
+  push:
+    - main
+  pull_request:
+
+jobs:
+  lint-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
+
+    - name: Run changelog linter
+      uses: MalteHerrmann/changelog-lint-action@v1
+
