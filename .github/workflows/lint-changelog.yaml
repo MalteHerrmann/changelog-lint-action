@@ -1,8 +1,6 @@
 name: Changelog Linter
 
 on:
-  push:
-    - main
   pull_request:
 
 jobs:
