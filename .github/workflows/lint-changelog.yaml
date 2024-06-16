@@ -12,5 +12,5 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run changelog linter
-      uses: MalteHerrmann/changelog-lint-action
+      uses: MalteHerrmann/changelog-lint-action@0918ef12e6dc06adce0743e1c6c13707a7c20323
 
