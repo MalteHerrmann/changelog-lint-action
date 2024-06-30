@@ -3,6 +3,10 @@ name: Changelog Linter
 on:
   pull_request:
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
   lint-changelog:
     runs-on: ubuntu-latest
@@ -12,5 +16,8 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run changelog linter
-      uses: MalteHerrmann/changelog-lint-action@0918ef12e6dc06adce0743e1c6c13707a7c20323
+      uses: ./
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
 
