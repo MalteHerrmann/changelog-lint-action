@@ -6,6 +6,8 @@ on:
 jobs:
   lint-changelog:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
 
     steps:
     - name: Check out the repository
@@ -15,6 +17,6 @@ jobs:
       # uses: MalteHerrmann/changelog-lint-action@135186f4c4e9d20424a5334c13ea749f601195b1
       uses: ./
       with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
