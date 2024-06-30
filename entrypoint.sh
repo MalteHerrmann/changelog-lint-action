@@ -1,3 +1,6 @@
+#!/bin/sh
+set -ex
+
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 clu lint | reviewdog -efm="%f:%l: %m" \
