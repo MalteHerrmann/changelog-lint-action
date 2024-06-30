@@ -1,4 +1,4 @@
-FROM ghcr.io/malteherrmann/changelog-utils:latest
+FROM ghcr.io/malteherrmann/changelog-utils:v1.1.2
 
 WORKDIR /github/workspace
 
