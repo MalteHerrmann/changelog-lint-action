@@ -16,7 +16,6 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run changelog linter
-      # uses: MalteHerrmann/changelog-lint-action@135186f4c4e9d20424a5334c13ea749f601195b1
       uses: ./
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
