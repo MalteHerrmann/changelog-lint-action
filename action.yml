@@ -1,6 +1,10 @@
 name: 'Changelog Linter'
 description: 'A linter for your changelog. Based on https://github.com/MalteHerrmann/changelog-utils'
 author: 'Malte Herrmann'
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN'
+    default: '${{ github.token }}'
 outputs:
   linter-results:
     description: 'Changelog linter output'
