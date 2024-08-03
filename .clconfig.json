@@ -4,9 +4,9 @@
     "docker"
   ],
   "change_types": {
-    "Bug Fixes": "bug\\s*fixes",
-    "Features": "features",
-    "Improvements": "improvements"
+    "Bug Fixes": "fix",
+    "Features": "feat",
+    "Improvements": "imp"
   },
   "expected_spellings": {},
   "legacy_version": null,
