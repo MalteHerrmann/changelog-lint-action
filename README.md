@@ -27,7 +27,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run changelog linter
-      uses: MalteHerrmann/changelog-lint-action@v0.1.0
+      uses: MalteHerrmann/changelog-lint-action@v0.2.0
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
