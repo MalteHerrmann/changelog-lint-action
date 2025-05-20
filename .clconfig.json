@@ -3,11 +3,22 @@
     "ci",
     "docker"
   ],
-  "change_types": {
-    "Bug Fixes": "fix",
-    "Features": "feat",
-    "Improvements": "imp"
-  },
+  "change_types": [
+    {
+      "long": "Features",
+      "short": "feat"
+    },
+    {
+      "long": "Improvements",
+      "short": "imp"
+    },
+    {
+      "long": "Bug Fixes",
+      "short": "fix"
+    }
+  ],
+  "changelog_path": "./CHANGELOG.md",
+  "commit_message": "add changelog entry",
   "expected_spellings": {},
   "legacy_version": null,
   "target_repo": "https://github.com/MalteHerrmann/changelog-lint-action"
