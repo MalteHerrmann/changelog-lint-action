@@ -4,6 +4,12 @@ This changelog was created using the `clu` binary
 -->
 # Changelog
 
+## [v0.4.0](https://github.com/MalteHerrmann/changelog-lint-action/releases/tag/v0.4.0) - 2026-02-02
+
+### Improvements
+
+- (docker) [#10](https://github.com/MalteHerrmann/changelog-lint-action/pull/10) Update changelog utils to v1.6.0 and prepare v0.4.0.
+
 ## [v0.3.0](https://github.com/MalteHerrmann/changelog-lint-action/releases/tag/v0.3.0) - 2025-05-21
 
 ### Improvements

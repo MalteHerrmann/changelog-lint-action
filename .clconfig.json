@@ -1,25 +1,29 @@
 {
+  "config_version": 1,
   "categories": [
     "ci",
     "docker"
   ],
   "change_types": [
     {
-      "long": "Features",
-      "short": "feat"
+      "short": "feat",
+      "long": "Features"
     },
     {
-      "long": "Improvements",
-      "short": "imp"
+      "short": "imp",
+      "long": "Improvements"
     },
     {
-      "long": "Bug Fixes",
-      "short": "fix"
+      "short": "fix",
+      "long": "Bug Fixes"
     }
   ],
-  "changelog_path": "./CHANGELOG.md",
   "commit_message": "add changelog entry",
+  "changelog_path": "CHANGELOG.md",
+  "changelog_dir": null,
   "expected_spellings": {},
   "legacy_version": null,
-  "target_repo": "https://github.com/MalteHerrmann/changelog-lint-action"
+  "mode": "single",
+  "target_repo": "https://github.com/MalteHerrmann/changelog-lint-action",
+  "use_categories": true
 }
