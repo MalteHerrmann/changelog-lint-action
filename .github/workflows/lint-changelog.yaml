@@ -1,4 +1,4 @@
-name: Changelog Linter
+name: Changelog Utils
 
 on:
   pull_request:
@@ -8,12 +8,17 @@ permissions:
   contents: read
 
 jobs:
-  lint-changelog:
+  check-changelog:
     runs-on: ubuntu-latest
 
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
+
+    - name: Check diff
+      uses: ./
+      with:
+          command: check-diff
 
     - name: Run changelog linter
       uses: ./
