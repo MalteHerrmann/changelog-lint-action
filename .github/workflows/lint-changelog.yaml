@@ -23,8 +23,10 @@ jobs:
       with:
           command: check-diff
 
+    - name: Verify checkout remains owned by the runner
+      run: test -z "$(find .git ! -uid "$(id -u)" -print -quit)"
+
     - name: Run changelog linter
       uses: ./
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-

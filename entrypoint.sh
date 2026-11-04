@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+# Git writes must remain writable by subsequent steps on the host runner.
+if [ "$(id -u)" = 0 ] && [ "$(stat -c %u .)" != 0 ]; then
+  exec su-exec "$(stat -c '%u:%g' .)" "$0"
+fi
+
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 export GITHUB_TOKEN="${INPUT_GITHUB_TOKEN}"
 
