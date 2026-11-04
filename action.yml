@@ -9,8 +9,8 @@ inputs:
     description: 'GITHUB_TOKEN'
     default: '${{ github.token }}'
 outputs:
-  util-results:
-    description: 'Changelog utility output'
+  linter-results:
+    description: 'Changelog linter output'
 runs:
   using: 'docker'
   image: 'Dockerfile'

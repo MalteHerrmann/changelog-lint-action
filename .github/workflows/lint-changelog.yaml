@@ -15,6 +15,9 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v4
 
+    - name: Test action entrypoint
+      run: python3 tests/test_entrypoint.py
+
     - name: Check diff
       uses: ./
       with:
@@ -24,5 +27,4 @@ jobs:
       uses: ./
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
 

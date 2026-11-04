@@ -4,6 +4,12 @@ This changelog was created using the `clu` binary
 -->
 # Changelog
 
+## Unreleased
+
+### Improvements
+
+- (ci) [#11](https://github.com/MalteHerrmann/changelog-lint-action/pull/11) Update changelog-utils to v1.6.1, add check-diff support, and rename the action to Changelog Utils.
+
 ## [v0.4.0](https://github.com/MalteHerrmann/changelog-lint-action/releases/tag/v0.4.0) - 2026-02-02
 
 ### Improvements
