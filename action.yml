@@ -1,7 +1,10 @@
-name: 'Changelog Linter'
-description: 'A linter for your changelog. Based on https://github.com/MalteHerrmann/changelog-utils'
+name: 'Changelog Utils'
+description: 'A collection of utilities for your changelog. Based on https://github.com/MalteHerrmann/changelog-utils'
 author: 'Malte Herrmann'
 inputs:
+  command:
+    description: 'Which changelog utility to use?'
+    default: 'lint'
   github_token:
     description: 'GITHUB_TOKEN'
     default: '${{ github.token }}'

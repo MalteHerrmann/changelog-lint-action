@@ -1,4 +1,8 @@
-FROM ghcr.io/malteherrmann/changelog-utils:v1.6.0
+FROM ghcr.io/malteherrmann/changelog-utils:v1.6.1
+
+USER root
+RUN apk add --no-cache git su-exec \
+    && git config --system --add safe.directory /github/workspace
 
 WORKDIR /github/workspace
 

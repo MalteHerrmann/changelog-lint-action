@@ -1,4 +1,4 @@
-name: Changelog Linter
+name: Changelog Utils
 
 on:
   pull_request:
@@ -8,16 +8,25 @@ permissions:
   contents: read
 
 jobs:
-  lint-changelog:
+  check-changelog:
     runs-on: ubuntu-latest
 
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
 
+    - name: Test action entrypoint
+      run: python3 tests/test_entrypoint.py
+
+    - name: Check diff
+      uses: ./
+      with:
+          command: check-diff
+
+    - name: Verify checkout remains owned by the runner
+      run: test -z "$(find .git ! -uid "$(id -u)" -print -quit)"
+
     - name: Run changelog linter
       uses: ./
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
