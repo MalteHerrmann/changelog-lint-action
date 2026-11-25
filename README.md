@@ -62,13 +62,13 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Require a changelog entry for this PR
-        uses: MalteHerrmann/changelog-lint-action@v0.6.0
+        uses: MalteHerrmann/changelog-lint-action@ae12b0e92ac8f465f3056ca01ad9c47c6bf3d451 # v0.6.0
         with:
           command: check-diff
           github_token: ${{ github.token }}
 
       - name: Lint the changelog
-        uses: MalteHerrmann/changelog-lint-action@v0.6.0
+        uses: MalteHerrmann/changelog-lint-action@ae12b0e92ac8f465f3056ca01ad9c47c6bf3d451 # v0.6.0
         with:
           command: lint
           github_token: ${{ github.token }}
