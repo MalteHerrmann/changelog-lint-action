@@ -1,5 +1,5 @@
 {
-  "config_version": 1,
+  "config_version": 2,
   "categories": [
     "ci",
     "docker"
@@ -20,10 +20,8 @@
   ],
   "commit_message": "add changelog entry",
   "changelog_path": "CHANGELOG.md",
-  "changelog_dir": null,
   "expected_spellings": {},
   "legacy_version": null,
-  "mode": "single",
   "target_repo": "https://github.com/MalteHerrmann/changelog-lint-action",
   "use_categories": true
 }

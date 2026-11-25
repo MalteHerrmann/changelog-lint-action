@@ -1,4 +1,4 @@
-FROM ghcr.io/malteherrmann/changelog-utils:v1.6.1
+FROM ghcr.io/malteherrmann/changelog-utils:v1.7.0
 
 USER root
 RUN apk add --no-cache git su-exec \
