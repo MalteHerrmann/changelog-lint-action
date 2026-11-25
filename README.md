@@ -24,7 +24,18 @@ branch name must be unique across open PRs (including forks).
 
 The display name has changed, but the repository remains `changelog-lint-action`.
 
-## Example Workflow
+## Check for an entry and lint the changelog
+
+Copy the following into `.github/workflows/changelog.yml`. It first requires a
+new Unreleased entry for the current PR, then checks changelog formatting and
+reports lint problems through reviewdog. Using the action without `command:
+check-diff` only runs the linter; linting alone does not require a new entry.
+
+Before enabling the workflow, initialize the project's changelog configuration
+with `clu init` if needed. Commit `.clconfig.json` with `mode` set to `single`,
+`target_repo` set to your repository's GitHub URL, and `changelog_path` pointing
+to your changelog. Entries must follow that configuration and link to their PR.
+The upstream limitations above still apply.
 
 ```yaml
 name: Changelog Utils
@@ -32,27 +43,64 @@ name: Changelog Utils
 on:
   pull_request:
 
-permissions:
-  pull-requests: write
-  contents: read
+# Grant permissions only to the job that needs them.
+permissions: {}
 
 jobs:
-  lint-changelog:
+  changelog:
+    name: Changelog checks
     runs-on: ubuntu-latest
+    permissions:
+      contents: read       # Check out the repository and fetch the base branch.
+      pull-requests: write # Read PR metadata and post reviewdog review comments.
 
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v4
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-    - name: Check changelog diff
-      uses: MalteHerrmann/changelog-lint-action@v0.5.0
-      with:
+      - name: Require a changelog entry for this PR
+        uses: MalteHerrmann/changelog-lint-action@2195b9c5c1dd128ace0aa7cec2653eb54c3389c8 # v0.5.0
+        with:
           command: check-diff
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ github.token }}
 
-    - name: Run changelog linter
-      uses: MalteHerrmann/changelog-lint-action@v0.5.0
-      with:
+      - name: Lint the changelog
+        uses: MalteHerrmann/changelog-lint-action@2195b9c5c1dd128ace0aa7cec2653eb54c3389c8 # v0.5.0
+        with:
           command: lint
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ github.token }}
 ```
+
+### Token permissions and security
+
+The `permissions` keys control the automatic, short-lived `GITHUB_TOKEN` for this
+job. You do not need to create a personal access token or add a repository secret.
+The action defaults to `${{ github.token }}`; the example passes it explicitly to
+make the authentication clear.
+
+- `contents: read` allows checkout and the base-branch fetch. No repository write
+  access is needed. Leave checkout's `persist-credentials` enabled (the default)
+  so authenticated fetches also work in private repositories.
+- `pull-requests: write` allows reviewdog to post PR review comments. If you only
+  use `check-diff`, remove the lint step and reduce this to `pull-requests: read`.
+  No `checks: write` or `issues: write` permission is required.
+- Action references are pinned to full commit SHAs to prevent tag changes from
+  silently changing the code your workflow runs. The comments identify their
+  versions. On self-hosted runners, checkout's authenticated Git operations in
+  Docker actions require Actions Runner v2.329.0 or later; GitHub-hosted
+  `ubuntu-latest` runners provide this support.
+
+GitHub normally restricts tokens for fork and Dependabot PRs to read-only access,
+even when the workflow requests write access. Reviewdog may therefore be unable
+to post review comments for those PRs. Keep the `pull_request` trigger: do **not**
+switch to `pull_request_target` or grant untrusted fork workflows write tokens
+just to enable comments.
+
+### Block merges when an entry is missing
+
+A missing matching Unreleased entry makes the `check-diff` step and the job fail.
+To enforce this before merging, select **Changelog checks** as a required status
+check in your branch protection rule or repository ruleset after its first run.
+Do not add `continue-on-error: true` to the step or job. Move entries into a
+versioned release section after the PR merges, because `check-diff` requires the
+entry to remain Unreleased while the PR is open.
