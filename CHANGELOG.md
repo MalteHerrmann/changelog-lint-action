@@ -4,7 +4,7 @@ This changelog was created using the `clu` binary
 -->
 # Changelog
 
-## Unreleased
+## [v0.6.0](https://github.com/MalteHerrmann/changelog-lint-action/releases/tag/v0.6.0) - 2026-11-25
 
 ### Improvements
 
