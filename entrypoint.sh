@@ -14,7 +14,7 @@ if [ "$INPUT_COMMAND" = "lint" ]; then
   trap 'rm -f "$output"' EXIT
   status=0
   clu lint > "$output" || status=$?
-  reviewdog -efm="%f:%l: %m" \
+  reviewdog -efm="%f:%l %m" \
     -name="changelog-utils" \
     -reporter="github-pr-review" \
     -filter-mode="nofilter" \
@@ -26,7 +26,7 @@ elif [ "$INPUT_COMMAND" = "check-diff" ]; then
     exit 1
   fi
   if [ "$GITHUB_HEAD_REF" = "$GITHUB_BASE_REF" ]; then
-    echo 'Error: clu v1.6.1 requires different head and base branch names.' >&2
+    echo 'Error: clu v1.7.0 requires different head and base branch names.' >&2
     exit 1
   fi
   if [ "$(git rev-parse --is-shallow-repository)" = true ]; then

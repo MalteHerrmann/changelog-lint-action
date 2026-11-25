@@ -4,6 +4,12 @@ This changelog was created using the `clu` binary
 -->
 # Changelog
 
+## Unreleased
+
+### Improvements
+
+- (ci) [#12](https://github.com/MalteHerrmann/changelog-lint-action/pull/12) Update changelog-utils to v1.7.0, support typed lint diagnostics, and prepare v0.6.0.
+
 ## [v0.5.0](https://github.com/MalteHerrmann/changelog-lint-action/releases/tag/v0.5.0) - 2026-11-04
 
 ### Improvements

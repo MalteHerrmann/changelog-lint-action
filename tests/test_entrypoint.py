@@ -16,7 +16,7 @@ class EntrypointTest(unittest.TestCase):
                 '#!/bin/sh\nset -e\n'
                 'if [ "$1" = check-diff ]; then\n'
                 '  git diff "$GITHUB_BASE_REF...$(git branch --show-current)"\n'
-                'else\n  echo "CHANGELOG.md:7: invalid entry"\nfi\n'
+                'else\n  echo "CHANGELOG.md:7 [description]: invalid entry"\nfi\n'
                 'exit "$CLU_STATUS"\n'
             )
             (path / "reviewdog").write_text(
@@ -48,7 +48,7 @@ class EntrypointTest(unittest.TestCase):
             with self.subTest(clu=clu_status, reviewdog=reviewdog_status):
                 result = self.run_action("lint", clu_status, reviewdog_status)
                 self.assertEqual(result.returncode, expected, result.stderr)
-                self.assertIn("CHANGELOG.md:7: invalid entry", result.stdout)
+                self.assertIn("CHANGELOG.md:7 [description]: invalid entry", result.stdout)
 
     def test_invalid_command(self):
         result = self.run_action("unknown")

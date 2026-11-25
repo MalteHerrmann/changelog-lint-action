@@ -15,12 +15,12 @@ Currently, the CI action supports:
 
 The `command` input defaults to `lint`. `check-diff` requires a `pull_request`
 event and a single-file changelog with an Unreleased entry for that PR. The action
-fetches the base branch and missing history automatically. With `clu` v1.6.1,
+fetches the base branch and missing history automatically. With `clu` v1.7.0,
 the PR's head and base branches must have different names.
 
-Upstream `check-diff` only searches the first 30 open PRs and identifies PRs by
-head branch name, not fork owner. The PR must be in that first page, and its head
-branch name must be unique across open PRs (including forks).
+Upstream `check-diff` searches all open PRs and identifies PRs by head branch
+name, not fork owner. The head branch name must be unique across open PRs
+(including forks).
 
 The display name has changed, but the repository remains `changelog-lint-action`.
 
@@ -32,9 +32,12 @@ reports lint problems through reviewdog. Using the action without `command:
 check-diff` only runs the linter; linting alone does not require a new entry.
 
 Before enabling the workflow, initialize the project's changelog configuration
-with `clu init` if needed. Commit `.clconfig.json` with `mode` set to `single`,
-`target_repo` set to your repository's GitHub URL, and `changelog_path` pointing
-to your changelog. Entries must follow that configuration and link to their PR.
+with `clu init` if needed (`clu init --yes` for non-interactive use). Commit
+`.clconfig.json` with `target_repo` set to your repository's GitHub URL and
+`changelog_path` pointing to your changelog. Only single-file changelogs are
+supported. For existing configurations, run `clu config migrate` to upgrade to
+configuration version 2 and remove retired settings such as `mode` and
+`changelog_dir`. Entries must follow that configuration and link to their PR.
 The upstream limitations above still apply.
 
 ```yaml
@@ -59,13 +62,13 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Require a changelog entry for this PR
-        uses: MalteHerrmann/changelog-lint-action@2195b9c5c1dd128ace0aa7cec2653eb54c3389c8 # v0.5.0
+        uses: MalteHerrmann/changelog-lint-action@v0.6.0
         with:
           command: check-diff
           github_token: ${{ github.token }}
 
       - name: Lint the changelog
-        uses: MalteHerrmann/changelog-lint-action@2195b9c5c1dd128ace0aa7cec2653eb54c3389c8 # v0.5.0
+        uses: MalteHerrmann/changelog-lint-action@v0.6.0
         with:
           command: lint
           github_token: ${{ github.token }}
